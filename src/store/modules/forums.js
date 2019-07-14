@@ -1,0 +1,19 @@
+import {makeAppendChildToParentMutation} from '../assetHelpers'
+
+export default {
+  namespaced: true,
+
+  state: {
+    items: {}
+  },
+
+  actions: {
+    // ===== FORUMS =====
+    fetchForum: ({dispatch}, {id}) => dispatch('fetchItem', {resource: 'forums', id}, {root: true}),
+    fetchForums: ({dispatch}, {ids}) => dispatch('fetchItems', {resource: 'forums', ids}, {root: true})
+  },
+
+  mutations: {
+    appendThreadToForum: makeAppendChildToParentMutation({parent: 'forums', child: 'threads'})
+  }
+}
